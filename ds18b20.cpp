@@ -28,7 +28,7 @@ class microbitp : public MicroBitComponent
     }
     void deletep(){
         val -= 1;
-        printf("val = %d\n",val);
+        //printf("val = %d\n",val);
         if (status & 0x01)
             delete ((DigitalIn *)pin);
         if (status & 0x02)
@@ -60,7 +60,6 @@ class microbitp : public MicroBitComponent
     }
 
     int getDigitalValue(){
-        
         ((DigitalIn *)pin)->mode(PullNone);
         status = 0x01;
         return ((DigitalIn *)pin)->read();
