@@ -1,4 +1,3 @@
-
 #include "pxt.h"
 #include <cstdint>
 #include <math.h>
@@ -23,18 +22,30 @@ class microbitp : public MicroBitComponent
         this->capability = capability;
         this->pullMode = 1;
         this->status = 0x00;
-        this->pin = new DigitalOut(name);
+        this->pin = NULL;
+        connect();
+    }
+    ~microbitp(){
+        if (status & 0x01)
+            delete ((DigitalIn *)pin);
+        if (status & 0x02)
+            delete ((DigitalOut *)pin);
+    }
+    
+    void connect(){ 
+        pin = new DigitalOut(name);
     }
 
     int setDigitalValue(int value){
+        stat = 1;
         // Write the value.
         ((DigitalOut *)pin)->write(value);
         return 0;
     }
 
     int getDigitalValue(){
-
-       ((DigitalIn *)pin)->mode(PullNone);
+        stat = 2;
+        ((DigitalIn *)pin)->mode(PullNone);
         return ((DigitalIn *)pin)->read();
 //          return 0;
     }
