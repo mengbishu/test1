@@ -26,7 +26,7 @@ class microbitp : public MicroBitComponent
         this->pin = NULL;
         this->val = 0;
     }
-    deletep(){
+    void deletep(){
         val -= 1;
         printf("val = %d\n",val);
         if (status & 0x01)
