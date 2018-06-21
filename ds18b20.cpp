@@ -161,7 +161,7 @@ class microbitp : public MicroBitComponent
           case 14: pin = pin14; break;
           case 15: pin = pin15; break;
           case 16: pin = pin16; break;
-          default: pin = pin0; 
+          default: pin = pin0;
         }
         init();
         writeByte(0xCC);
