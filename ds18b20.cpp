@@ -23,36 +23,18 @@ class microbitp : public MicroBitComponent
         this->capability = capability;
         this->pullMode = 1;
         this->status = 0x00;
-        this->pin = NULL;
-    }
-
-    void disconnect(){ 
-        if (status & 0x01)
-            delete ((DigitalIn *)pin);
-        if (status & 0x02)
-            delete ((DigitalOut *)pin);
-        this->pin = NULL;
-        this->status = 0;
+        this->pin = new DigitalOut(name);
     }
 
     int setDigitalValue(int value){
-        // Move into a Digital input state if necessary.
-        if (!(status & 0x02)){
-            disconnect();
-            pin = new DigitalOut(name);
-            status |= 0x02;
-        }
         // Write the value.
         ((DigitalOut *)pin)->write(value);
         return 0;
     }
 
     int getDigitalValue(){
-        if (!(status & (0x01 | 0x20 | 0x40)))
-        {
-            ((DigitalIn *)pin)->mode(PullNone);
-            status |= 0x01;
-        }
+
+       ((DigitalIn *)pin)->mode(PullNone);
         return ((DigitalIn *)pin)->read();
 //          return 0;
     }
@@ -148,7 +130,6 @@ class microbitp : public MicroBitComponent
 
     //%
     int16_t Temperature(int p) {
-        printf("in\n");
         switch(p){
           case 0: pin = pin0; break;
           case 1: pin = pin1; break;
@@ -173,7 +154,6 @@ class microbitp : public MicroBitComponent
         int b2 = readByte();
 
         int16_t temp = (b2 << 8 | b1);
-        printf("out\n");
         return temp * 100 / 16;
     }
 }
