@@ -1,8 +1,5 @@
 //% color=#5042f4 icon="\uf2c9"
 namespace DS18B20 {
-
-    // Functions for interfacing with the DS1820
-
     /**
      * Reads the temperature from the one-wire temperature sensor.
      * Returns a 4 digit number. value should be divided by 100 to get 
@@ -44,7 +41,7 @@ namespace DS18B20 {
     //% weight=10 blockId="Temperature_number" 
     //% block="|%p| Temperature_number "
     //% p.fieldEditor="gridpicker" p.fieldOptions.columns=4
-    export function Temperature_number(p: pin): number {
+    export function TemperatureNumber(p: pin): number {
         // Fake function for simulator
         return Temperature(p)
     }
@@ -52,7 +49,7 @@ namespace DS18B20 {
     //% weight=10 blockId="Temperature_string" 
     //% block="|%p| Temperature_string "
     //% p.fieldEditor="gridpicker" p.fieldOptions.columns=4
-    export function Temperature_string(p: pin) : string{
+    export function TemperatureString(p: pin) : string{
         let temp = Temperature(p);
         let x = (temp / 100)
         let y = (temp % 100)
