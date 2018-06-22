@@ -1,4 +1,6 @@
 //% color=#5042f4 icon="\uf2c9"
+//111111111111
+
 namespace DS18B20 {
     /**
      * Reads the temperature from the one-wire temperature sensor.
