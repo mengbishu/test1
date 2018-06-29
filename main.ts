@@ -1,7 +1,4 @@
 //% color=#5042f4 icon="\uf2c9"
-//111111111111
-
-
 namespace DS18B20 {
     /**
      * Reads the temperature from the one-wire temperature sensor.
@@ -46,7 +43,7 @@ namespace DS18B20 {
     //% p.fieldEditor="gridpicker" p.fieldOptions.columns=4
     export function TemperatureNumber(p: pin): number {
         // Fake function for simulator
-        return Temperature(p)
+        return Temperature(p)/100
     }
     
     //% weight=10 blockId="Temperature_string" 
