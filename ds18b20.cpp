@@ -29,7 +29,7 @@
  */
 
 
-#include "MicroBit.h"
+#include "pxt.h"
 #include "TimedInterruptIn.h"
 #include <cstdio>
 #include <cmath>
@@ -40,7 +40,7 @@
 using namespace pxt;
 
 namespace DS18B20 {
-/*
+
   #define FAMILY_CODE address.rom[0]
   //#define FAMILY_CODE 0x28
   #define FAMILY_CODE_DS18S20 0x10 //9bit temp
@@ -145,16 +145,17 @@ namespace DS18B20 {
       }
       return delay_time;
     }
-*/
 
-//    int temperature(rom_address_t &address) {
+
+    int temperature(rom_address_t &address) {
       //float answer, remaining_count, count_per_degree;
-//      int reading = 0;
-//      readScratchPad(address);
-/*      if (RAM_checksum_error()){
+      int reading = 0;
+      readScratchPad(address);
+/*
+      if (RAM_checksum_error()){
         // Indicate we got a CRC error
         answer = invalid_conversion;
-	  }
+      }
       else {
         reading = (RAM[1] << 8) + RAM[0];
         if (reading & 0x8000) { // negative degrees C
@@ -174,7 +175,7 @@ namespace DS18B20 {
                               (count_per_degree - remaining_count) / count_per_degree);
             break;
           default:
-            uBit.serial.printf("Unknown device family");
+            //uBit.serial.printf("Unknown device family");
             break;
         }
         if (convertToFarenheight) {
@@ -182,10 +183,10 @@ namespace DS18B20 {
         }
       }
 */
-//    reading = (RAM[1] << 8) + RAM[0];
-//      return reading*100/16;
-//    }
-/*
+    reading = (RAM[1] << 8) + RAM[0];
+      return reading*100/16;
+    }
+
     bool setResolution(rom_address_t &address, unsigned int resolution) {
       bool answer = false;
       switch (FAMILY_CODE) {
@@ -506,12 +507,12 @@ namespace DS18B20 {
       return onewire_bit_in();
     }
   };
-*/
+
   //MicroBit uBit;
   MicroBitPin pin = uBit.io.P0;
   //%
   int16_t Temperature(int p) {
-    /*
+    
     switch(p){
       case 0: pin = uBit.io.P0; break;
       case 1: pin = uBit.io.P1; break;
@@ -526,7 +527,7 @@ namespace DS18B20 {
       case 16: pin = uBit.io.P16; break;
       default: pin = uBit.io.P0;
     }
-    */
+    
 //    OneWire oneWire(pin.name);
 //    oneWire.init();
 //    oneWire.findAllDevicesOnBus();
